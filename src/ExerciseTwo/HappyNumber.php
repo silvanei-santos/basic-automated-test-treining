@@ -12,7 +12,7 @@ class HappyNumber
             return false;
         }
         $evaluatedNumbers = [];
-        while ($number > 1 && $this->wasNotEvaluated($number, $evaluatedNumbers)) {
+        while ($this->wasNotEvaluated($number, $evaluatedNumbers)) {
             $evaluatedNumbers[] = $number;
             $number = $this->sumOfSquareOfDigits($number);
         }
@@ -33,18 +33,17 @@ class HappyNumber
     {
         $sumOfSquares = 0;
         foreach ($this->digitsInANumber($number) as $digit) {
-            $sumOfSquares += pow($digit, 2);
+            $sumOfSquares += pow((int)$digit, 2);
         }
         return $sumOfSquares;
     }
 
     /**
      * @param int $number
-     * @return array<int>
+     * @return array<string>
      */
     private function digitsInANumber(int $number): array
     {
-        $digits = str_split("$number");
-        return array_map(fn($digit) => (int)$digit, $digits);
+        return str_split("$number");
     }
 }

@@ -31,4 +31,13 @@ class HappyNumberTest extends TestCase
         $isAHappyNumber = $happyNumber->isHappy(0);
         $this->assertFalse($isAHappyNumber);
     }
+
+    public function testShouldReturnTrueForNumberEqualsOne(): void
+    {
+        $happyNumber = new HappyNumber();
+        $isAHappyNumber = $happyNumber->isHappy(1);
+        $this->assertTrue($isAHappyNumber);
+        $isAHappyNumber = $happyNumber->isHappy(2);
+        $this->assertFalse($isAHappyNumber);
+    }
 }
