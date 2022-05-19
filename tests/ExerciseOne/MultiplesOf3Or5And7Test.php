@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SilvaneiSantos\BasicAutomatedTestTreining\ExerciseOne;
 
 use PHPUnit\Framework\TestCase;
@@ -12,8 +14,8 @@ class MultiplesOf3Or5And7Test extends TestCase
     {
         $multiplesOf3Or5And7 = new MultiplesOf3Or5And7();
 
-        $resultFor3And7 = $multiplesOf3Or5And7->add(new NaturalNumber(21));
-        $resultFor5And7 = $multiplesOf3Or5And7->add(new NaturalNumber(35));
+        $resultFor3And7 = $multiplesOf3Or5And7->isMultiple(new NaturalNumber(21));
+        $resultFor5And7 = $multiplesOf3Or5And7->isMultiple(new NaturalNumber(35));
 
         $this->assertEquals(21, $resultFor3And7);
         $this->assertEquals(35, $resultFor5And7);
@@ -23,10 +25,10 @@ class MultiplesOf3Or5And7Test extends TestCase
     {
         $multiplesOf3Or5And7 = new MultiplesOf3Or5And7();
 
-        $resultFor20 = $multiplesOf3Or5And7->add(new NaturalNumber(20));
-        $resultFor22 = $multiplesOf3Or5And7->add(new NaturalNumber(22));
-        $resultFor34 = $multiplesOf3Or5And7->add(new NaturalNumber(34));
-        $resultFor36 = $multiplesOf3Or5And7->add(new NaturalNumber(36));
+        $resultFor20 = $multiplesOf3Or5And7->isMultiple(new NaturalNumber(20));
+        $resultFor22 = $multiplesOf3Or5And7->isMultiple(new NaturalNumber(22));
+        $resultFor34 = $multiplesOf3Or5And7->isMultiple(new NaturalNumber(34));
+        $resultFor36 = $multiplesOf3Or5And7->isMultiple(new NaturalNumber(36));
 
         $this->assertEquals(0, $resultFor20);
         $this->assertEquals(0, $resultFor22);

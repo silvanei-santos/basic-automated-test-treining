@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SilvaneiSantos\BasicAutomatedTestTreining\ExerciseOne;
 
 class SumNaturalNumbers
 {
-    public function __construct(private SumNaturalNumbersStrategy $strategy)
+    public function __construct(private NumberIsMultipleStrategy $strategy)
     {
     }
 
@@ -16,7 +18,9 @@ class SumNaturalNumbers
     {
         $total = 0;
         foreach ($naturalNumbers as $naturalNumber) {
-            $total += $this->strategy->add($naturalNumber);
+            if ($this->strategy->isMultiple($naturalNumber)) {
+                $total += $naturalNumber->value;
+            }
         }
 
         return $total;

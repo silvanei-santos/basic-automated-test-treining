@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SilvaneiSantos\BasicAutomatedTestTreining\ExerciseOne;
 
-class MultiplesOf3Or5And7 implements SumNaturalNumbersStrategy
+class MultiplesOf3Or5And7 implements NumberIsMultipleStrategy
 {
-    public function add(NaturalNumber $naturalNumber): int
+    public function isMultiple(NaturalNumber $naturalNumber): bool
     {
-        if (($naturalNumber->value % 3 === 0 | $naturalNumber->value % 5 === 0) && $naturalNumber->value % 7 === 0) {
-            return $naturalNumber->value;
-        }
-        return 0;
+        return (
+            ($naturalNumber->value % 3 === 0 | $naturalNumber->value % 5 === 0)
+            && $naturalNumber->value % 7 === 0
+        );
     }
 }

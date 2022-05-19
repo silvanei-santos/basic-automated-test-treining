@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SilvaneiSantos\BasicAutomatedTestTreining\ExerciseTwo;
 
 use PHPUnit\Framework\TestCase;
