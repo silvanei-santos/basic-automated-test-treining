@@ -6,6 +6,8 @@ RUN set -e \
     && apk update --no-cache \
     && apk add --no-cache --virtual .phpize-deps \
         $PHPIZE_DEPS \
+    && docker-php-ext-install \
+        bcmath \
     && pecl install \
         xdebug \
     && docker-php-ext-enable \
