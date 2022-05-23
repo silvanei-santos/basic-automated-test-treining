@@ -10,35 +10,36 @@ use SilvaneiSantos\BasicAutomatedTestTreining\ExerciseFour\CalculateOrder;
 
 class CalculateOrderTest extends TestCase
 {
-    public function testMustNotChargeFreightForPurchasesUnderOnHundred(): void
-    {
-        $stubCart = $this->createStub(Cart::class);
-        $stubCart->method('total')->willReturn(100.00);
-        $fakeFreightCalculatorCorreios = new FakeFreightCalculatorCorreios();
-        $freight = new CalculateOrder($fakeFreightCalculatorCorreios);
-        $freightValue = $freight->calculate($stubCart);
-        $this->assertEquals(100.00, $freightValue);
-    }
-
-    public function testMustChargeShippingForPurchasesGreaterThanOrEqualToOneHundred(): void
+    public function testMustChargeFreightForPurchasesUnderOneHundred(): void
     {
         $mockCart = $this->createMock(Cart::class);
-        $mockCart->method('total')->willReturn(100.01);
+        $mockCart->method('total')->willReturn(99.99);
         $mockCart->expects($this->exactly(1))->method('cep');
         $fakeFreightCalculatorCorreios = new FakeFreightCalculatorCorreios();
         $freight = new CalculateOrder($fakeFreightCalculatorCorreios);
         $freightValue = $freight->calculate($mockCart);
-        $this->assertEquals(130.00, $freightValue);
+        $this->assertEquals(129.98, $freightValue);
+    }
+
+    public function testMustNotChargeShippingForPurchasesEqualToOneHundred(): void
+    {
+        $mockCart = $this->createMock(Cart::class);
+        $mockCart->method('total')->willReturn(100.00);
+        $mockCart->expects($this->never())->method('cep');
+        $fakeFreightCalculatorCorreios = new FakeFreightCalculatorCorreios();
+        $freight = new CalculateOrder($fakeFreightCalculatorCorreios);
+        $freightValue = $freight->calculate($mockCart);
+        $this->assertEquals(100.00, $freightValue);
     }
 
     public function testMustCalculateWithTwoDigitPrecision(): void
     {
         $mockCart = $this->createMock(Cart::class);
-        $mockCart->method('total')->willReturn(100.99999);
+        $mockCart->method('total')->willReturn(0.99999);
         $mockCart->expects($this->exactly(1))->method('cep');
         $fakeFreightCalculatorCorreios = new FakeFreightCalculatorCorreios();
         $freight = new CalculateOrder($fakeFreightCalculatorCorreios);
         $freightValue = $freight->calculate($mockCart);
-        $this->assertEquals(130.99, $freightValue);
+        $this->assertEquals(30.98, $freightValue);
     }
 }

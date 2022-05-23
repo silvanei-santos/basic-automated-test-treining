@@ -10,6 +10,6 @@ class FakeFreightCalculatorCorreios implements FreightCalculator
 {
     public function calculate(string $cep): float
     {
-        return 29.99999;
+        return 29.99;
     }
 }

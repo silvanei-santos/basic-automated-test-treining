@@ -12,11 +12,11 @@ class CalculateOrder
 
     public function calculate(Cart $cart): float
     {
+        $freightTotal = 0;
         $cartTotal = $cart->total();
-        if ($cartTotal <= 100) {
-            return $cartTotal;
+        if ($cartTotal < 100) {
+            $freightTotal = $this->freightCalculator->calculate($cart->cep());
         }
-        $freightTotal = $this->freightCalculator->calculate($cart->cep());
         return (float)bcadd("$cartTotal", "$freightTotal", 2);
     }
 }
