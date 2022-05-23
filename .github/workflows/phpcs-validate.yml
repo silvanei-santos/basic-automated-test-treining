@@ -1,8 +1,6 @@
 name: phpcs-validate
 on:
-  push:
-    branches:
-      - main
+  pull_request:
 jobs:
   code-standard:
     runs-on: ubuntu-latest
