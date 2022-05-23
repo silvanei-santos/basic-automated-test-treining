@@ -1,8 +1,6 @@
 name: phpstan-validate
 on:
-  push:
-    branches:
-      - main
+  pull_request:
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
