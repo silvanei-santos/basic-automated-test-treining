@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  basic-automated-test-treining:
+    image: basic-automated-test-treining:dev
+    container_name: basic-automated-test-treining
+    build:
+      context: .
+    working_dir: /opt/basic-automated-test-treining
+    user: "1001:1001"
+    volumes:
+      - ./:/opt/basic-automated-test-treining

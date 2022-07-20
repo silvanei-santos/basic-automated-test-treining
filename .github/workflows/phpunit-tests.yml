@@ -17,9 +17,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.1.6
+          extensions: bcmath
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer install
 
       - name: Test
         run: composer test
